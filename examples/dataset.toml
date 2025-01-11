@@ -6,5 +6,5 @@ num_ar_buckets = 7
 frame_buckets = [80]
 
 [[directory]]
-path = '/home/anon/data/images/grayscale'
+path = '/workspace/diffusion-pipe/inputs'
 num_repeats = 1

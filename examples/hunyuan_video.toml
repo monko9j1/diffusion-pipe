@@ -1,4 +1,4 @@
-output_dir = '/data/diffusion_pipe_training_runs/hunyuan_video_test'
+output_dir = '/workspace/ComfyUI/models/loras'
 dataset = 'examples/dataset.toml'
 
 epochs = 200
@@ -10,7 +10,7 @@ warmup_steps = 100
 
 eval_every_n_epochs = 1
 eval_before_first_step = true
-eval_micro_batch_size_per_gpu = 2
+eval_micro_batch_size_per_gpu = 1
 eval_gradient_accumulation_steps = 1
 
 save_every_n_epochs = 5
