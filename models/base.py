@@ -120,12 +120,24 @@ class BasePipeline:
 
     def configure_adapter(self, adapter_config):
         target_linear_modules = []
-        for module in self.transformer.modules():
+    
+        # Get the flag from adapter config with False as default
+        only_double_blocks = adapter_config.get('only_double_blocks', False)
+    
+        # Iterate through named modules to get full path names
+        for name, module in self.transformer.named_modules():
             if module.__class__.__name__ not in self.adapter_target_modules:
                 continue
-            for name, submodule in module.named_modules():
+            
+            # Skip single blocks when only_double_blocks is True    
+            if only_double_blocks and "single_blocks" in name:
+                continue
+            
+            # Get all linear layers within the module
+            for n, submodule in module.named_modules():
                 if isinstance(submodule, nn.Linear):
-                    target_linear_modules.append(name)
+                    print(f"Adding {name}.{n}")
+                    target_linear_modules.append(f"{name}.{n}")
 
         adapter_type = adapter_config['type']
         if adapter_type == 'lora':

@@ -99,6 +99,8 @@ type = 'lora'
 rank = 32
 # Dtype for the LoRA weights you are training.
 dtype = 'bfloat16'
+
+only_double_blocks = false
 # You can initialize the lora weights from a previously trained lora.
 #init_from_existing = '/data/diffusion_pipe_training_runs/something/epoch50'
 
